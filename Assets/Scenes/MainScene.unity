@@ -2903,6 +2903,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 563926d2bebc241568c5b217c1e1c660, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  moveSpeed: 5
+  lookSensitivity: 0.5
+  mainCamera: {fileID: 330585546}
 --- !u!1 &1885052067
 GameObject:
   m_ObjectHideFlags: 0
