@@ -412,6 +412,7 @@ GameObject:
   - component: {fileID: 330585545}
   - component: {fileID: 330585544}
   - component: {fileID: 330585547}
+  - component: {fileID: 330585548}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: MainCamera
@@ -537,6 +538,19 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!114 &330585548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330585543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc2d0fc76a5e14f9993141bfd0b966d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Interactor
+  interactDistance: 3
 --- !u!1001 &358721488
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -596,6 +610,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ec5f37a58ea864320b525f93a0e6bd0a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 358721490}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ec5f37a58ea864320b525f93a0e6bd0a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 358721494}
   m_SourcePrefab: {fileID: 100100000, guid: ec5f37a58ea864320b525f93a0e6bd0a, type: 3}
 --- !u!1 &358721489 stripped
 GameObject:
@@ -623,6 +640,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.375161, y: 0.36410713, z: 0.18966462}
   m_Center: {x: -0.00000026077032, y: 1.2651786, z: 0}
+--- !u!114 &358721494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 358721489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 177499a636baf400fac401c05a629f53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Interactable
 --- !u!1001 &377265660
 PrefabInstance:
   m_ObjectHideFlags: 0
