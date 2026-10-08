@@ -10,23 +10,23 @@ public class Interactor : MonoBehaviour
     private InputSystem_Actions inputActions;
     private Camera interactionCamera;
 
-    void Awake()
+    private void Awake()
     {
         inputActions = new InputSystem_Actions();
         interactionCamera = GetComponent<Camera>();
     }
 
-    void OnEnable()
+    private void OnEnable()
     {
         inputActions.Enable();
     }
 
-    void OnDisable()
+    private void OnDisable()
     {
         inputActions.Disable();
     }
 
-    void Update()
+    private void Update()
     {
         Interactable interactable = GetTargetInteractable();
     

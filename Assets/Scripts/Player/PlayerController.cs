@@ -10,23 +10,23 @@ public class PlayerController : MonoBehaviour
     private CharacterController controller;
     private float cameraPitch = 0f;
 
-    void Awake()
+    private void Awake()
     {
         inputActions = new InputSystem_Actions();
         controller = GetComponent<CharacterController>();
     }
 
-    void OnEnable()
+    private void OnEnable()
     {
         inputActions.Enable();
     }
 
-    void OnDisable()
+    private void OnDisable()
     {
         inputActions.Disable();
     }
 
-    void Update()
+    private void Update()
     {
         // WASDキーによる移動操作
         Vector2 moveInput = inputActions.Player.Move.ReadValue<Vector2>();
