@@ -1,0 +1,49 @@
+using System.Collections;
+using UnityEngine;
+
+public class CabinetInteractable : Interactable
+{
+    [SerializeField] private GameManager gameManager;
+    [SerializeField] private CabinetDoor cabinetDoor;
+    [SerializeField] private GameObject insertedKey;
+    [SerializeField] private GameObject cabinetLock;
+    [SerializeField] private float unlockDelay = 1f;
+
+    private bool isUnlocked;
+    private bool isUnlocking;
+
+    public override void Interact()
+    {
+        if (isUnlocked || isUnlocking) return;
+
+        if (!gameManager.HasKey)
+        {
+            Debug.Log("鍵が必要です");
+            return;
+        }
+
+        gameManager.UseKey();
+
+        // 解錠演出を開始
+        StartCoroutine(UnlockCabinet());
+    }
+
+    private IEnumerator UnlockCabinet()
+    {
+        isUnlocking = true;
+
+        insertedKey.SetActive(true);
+
+        // TODO: 解錠音を再生する
+
+        yield return new WaitForSeconds(unlockDelay);
+
+        insertedKey.SetActive(false);
+        cabinetLock.SetActive(false);
+
+        cabinetDoor.Open();
+
+        isUnlocked = true;
+        isUnlocking =false;
+    }
+}
