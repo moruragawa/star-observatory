@@ -58,7 +58,7 @@ public class Interactor : MonoBehaviour
         if (interactable != null)
         {
             interactionPrompt.SetActive(true);
-            actionText.text = interactable.InteractionText;
+            actionText.text = interactable.GetInteractionText();
         }
         else
         {

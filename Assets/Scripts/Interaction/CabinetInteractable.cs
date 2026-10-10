@@ -12,6 +12,17 @@ public class CabinetInteractable : Interactable
     private bool isUnlocked;
     private bool isUnlocking;
 
+    // 鍵の所持状態によってプロンプト表示を切り替える
+    public override string GetInteractionText()
+    {
+        if (gameManager.HasKey)
+        {
+            return "開ける";
+        }
+
+        return "調べる";
+    }
+
     public override void Interact()
     {
         if (isUnlocked || isUnlocking) return;

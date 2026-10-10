@@ -7,6 +7,17 @@ public class StarSlotInteractable : Interactable
     [SerializeField] private StarSlotDrawer starSlotDrawer;
     [SerializeField] private GameObject key;
 
+    // 星の所持状態によってプロンプト表示を切り替える
+    public override string GetInteractionText()
+    {
+        if (gameManager.HasStar)
+        {
+            return "星を置く";
+        }
+
+        return "調べる";
+    }
+
     public override void Interact()
     {
         if (!gameManager.HasStar)
