@@ -2512,6 +2512,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StarSlotDrawer
   moveDistance: 0.45
+  animationDuration: 0.5
 --- !u!1 &911103199 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 693afc871af1d4e908e8082067a7b11b, type: 3}
@@ -3799,6 +3800,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::KeyInteractable
   interactionText: "\u62FE\u3046"
   gameManager: {fileID: 1498423382}
+  starSlotDrawer: {fileID: 887798962}
 --- !u!1 &1498423381
 GameObject:
   m_ObjectHideFlags: 0
