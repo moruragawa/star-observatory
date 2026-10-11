@@ -3,9 +3,10 @@ using UnityEngine;
 public class StarSlotInteractable : Interactable
 {
     [SerializeField] private GameManager gameManager;
-    [SerializeField] private GameObject placedStar;
+    [SerializeField] private GameObject[] placedStars;
     [SerializeField] private StarSlotDrawer starSlotDrawer;
     [SerializeField] private GameObject key;
+    [SerializeField] private GameObject gear;
 
     // 星の所持状態によってプロンプト表示を切り替える
     public override string GetInteractionText()
@@ -26,13 +27,41 @@ public class StarSlotInteractable : Interactable
             return;
         }
 
-        // 所持している星を配置する
-        placedStar.SetActive(true);
-        gameManager.UseStar();
+        // 現在のゲーム状態に応じて処理を分ける
+        int starIndex;
 
-        // 引き出しが開き鍵が出現する
-        starSlotDrawer.Open();
-        key.SetActive(true);
+        switch (gameManager.CurrentState)
+        {
+            case GameManager.GameState.FindStar1:
+                starIndex = 0;
+
+                // 引き出しを開けて鍵を表示する
+                starSlotDrawer.Open();
+                key.SetActive(true);
+                break;
+            
+            case GameManager.GameState.FindStar2:
+                starIndex = 1;
+
+                // 引き出しを開けて歯車を表示する
+                starSlotDrawer.Open();
+                gear.SetActive(true);
+                break;
+            
+            case GameManager.GameState.FindStar3:
+                starIndex = 2;
+
+                // TODO: 星3配置後のクリア処理を追加する
+                break;
+            
+            default:
+                Debug.LogWarning("星を配置できません");
+                return;
+        }
+
+        // 所持している星を配置する
+        placedStars[starIndex].SetActive(true);
+        gameManager.UseStar();
 
         // ゲーム状態を更新する
         gameManager.AdvanceState();
