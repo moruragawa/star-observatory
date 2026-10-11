@@ -8,6 +8,7 @@ public class CabinetInteractable : Interactable
     [SerializeField] private GameObject insertedKey;
     [SerializeField] private GameObject cabinetLock;
     [SerializeField] private float unlockDelay = 1f;
+    [SerializeField] private Collider interactionCollider;
     [SerializeField] private Collider flowerHintCollider;
 
     private bool isUnlocked;
@@ -61,6 +62,8 @@ public class CabinetInteractable : Interactable
         // 扉が開き終わるまで待つ
         yield return new WaitUntil(() => cabinetDoor.IsOpen);
 
+        // キャビネットのインタラクションを無効にし、花のヒントのインタラクションを有効にする
+        interactionCollider.enabled = false;
         flowerHintCollider.enabled = true;
 
         isUnlocked = true;

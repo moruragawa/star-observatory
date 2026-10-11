@@ -6689,8 +6689,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 0
   serializedVersion: 3
-  m_Size: {x: 1.1012052, y: 1.1119249, z: 0.6452112}
-  m_Center: {x: 0.0038966537, y: 0.8137995, z: -5.3264527}
+  m_Size: {x: 1.1012052, y: 1.1119249, z: 0.22302529}
+  m_Center: {x: 0.0038482419, y: 0.8137995, z: -5.5375047}
 --- !u!114 &8111388563686014064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6739,6 +6739,7 @@ MonoBehaviour:
   insertedKey: {fileID: 1560488239}
   cabinetLock: {fileID: 8029593622507540609}
   unlockDelay: 1
+  interactionCollider: {fileID: 8187425363027210452}
   flowerHintCollider: {fileID: 8111388563686014063}
 --- !u!65 &8187425363027210452
 BoxCollider:
@@ -6779,7 +6780,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8831892341335490044}
   - component: {fileID: 8831892341335490045}
-  m_Layer: 0
+  - component: {fileID: 8831892341335490046}
+  m_Layer: 2
   m_Name: Cabinet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6928,8 +6930,8 @@ MonoBehaviour:
   cameraManager: {fileID: 270179712}
   viewPoint: {fileID: 1994135745}
   boxLid: {fileID: 8657175039322452338}
-  starInteractable: {fileID: 1307364183}
   interactionCollider: {fileID: 8609864261438447130}
+  starInteractable: {fileID: 1307364183}
 --- !u!4 &8652734834602352010
 Transform:
   m_ObjectHideFlags: 0
@@ -7094,6 +7096,27 @@ MonoBehaviour:
   rightPivot: {fileID: 7292596040963601049}
   openAngle: 120
   openDuration: 1
+--- !u!65 &8831892341335490046
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8204151034943842118}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.3319906, y: 1, z: 0.9927119}
+  m_Center: {x: -0.0009638144, y: 0, z: -5.51128}
 --- !u!4 &9180051824833675893
 Transform:
   m_ObjectHideFlags: 0
