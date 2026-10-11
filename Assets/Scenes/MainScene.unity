@@ -5728,8 +5728,8 @@ GameObject:
   - component: {fileID: 7257187883962804698}
   - component: {fileID: 4046553986098372986}
   - component: {fileID: 8111388563686014062}
-  - component: {fileID: 8111388563686014064}
   - component: {fileID: 8111388563686014063}
+  - component: {fileID: 8111388563686014064}
   m_Layer: 0
   m_Name: FlowerHint01
   m_TagString: Untagged
@@ -6363,9 +6363,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 3884337964497998714}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8254af32708474964bbdc019d8a6ed75, type: 3}
+  m_Script: {fileID: 11500000, guid: c8fde3ae9d5a948b18ed25c94fdb57f8, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FixedViewInteractable
+  m_EditorClassIdentifier: Assembly-CSharp::FlowerHintViewInteractable
   interactionText: "\u898B\u308B"
   cameraManager: {fileID: 270179712}
   viewPoint: {fileID: 863514902}
