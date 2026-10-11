@@ -24,6 +24,11 @@ public class Interactor : MonoBehaviour
     private void OnDisable()
     {
         inputActions.Disable();
+
+        if (interactionPrompt != null)
+        {
+            interactionPrompt.SetActive(false);
+        }
     }
 
     private void Update()
@@ -46,7 +51,12 @@ public class Interactor : MonoBehaviour
 
         if (Physics.Raycast(ray, out RaycastHit hit, interactDistance))
         {
-            return hit.collider.GetComponent<Interactable>();
+            Interactable interactable = hit.collider.GetComponent<Interactable>();
+            
+            if (interactable != null && interactable.isActiveAndEnabled)
+            {
+                return interactable;
+            }
         }
 
         return null;
@@ -55,7 +65,9 @@ public class Interactor : MonoBehaviour
     // 調査対象を見ている場合、プロンプトを表示する
     private void UpdateInteractionPrompt(Interactable interactable)
     {
-        if (interactable != null)
+        if (interactable != null
+            && interactable.isActiveAndEnabled
+            && interactable.CanInteract)
         {
             interactionPrompt.SetActive(true);
             actionText.text = interactable.GetInteractionText();
@@ -69,7 +81,9 @@ public class Interactor : MonoBehaviour
     // 正面の操作対象を検出して処理を実行する
     private void TryInteract(Interactable interactable)
     {
-        if (interactable != null)
+        if (interactable != null
+            && interactable.isActiveAndEnabled
+            && interactable.CanInteract)
         {
             interactable.Interact();
         }

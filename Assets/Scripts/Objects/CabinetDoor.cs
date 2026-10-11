@@ -13,6 +13,8 @@ public class CabinetDoor : MonoBehaviour
     private bool isOpen;
     private bool isAnimating;
 
+    public bool IsOpen => isOpen;
+
     private void Awake()
     {
         leftClosedRotation = leftPivot.localRotation;
@@ -46,7 +48,7 @@ public class CabinetDoor : MonoBehaviour
             leftPivot.localRotation =Quaternion.Slerp(
                 leftClosedRotation, leftOpenRotation, progress);
             rightPivot.localRotation =Quaternion.Slerp(
-                leftClosedRotation, rightOpenRotation, progress);
+                rightClosedRotation, rightOpenRotation, progress);
 
             yield return null;
         }

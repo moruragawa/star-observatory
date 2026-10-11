@@ -8,9 +8,13 @@ public class CabinetInteractable : Interactable
     [SerializeField] private GameObject insertedKey;
     [SerializeField] private GameObject cabinetLock;
     [SerializeField] private float unlockDelay = 1f;
+    [SerializeField] private Collider flowerHintCollider;
 
     private bool isUnlocked;
     private bool isUnlocking;
+
+    // 解錠中と解錠後は操作できない
+    public override bool CanInteract => !isUnlocked && !isUnlocking;
 
     // 鍵の所持状態によってプロンプト表示を切り替える
     public override string GetInteractionText()
@@ -54,7 +58,14 @@ public class CabinetInteractable : Interactable
 
         cabinetDoor.Open();
 
+        // 扉が開き終わるまで待つ
+        yield return new WaitUntil(() => cabinetDoor.IsOpen);
+
+        flowerHintCollider.enabled = true;
+
         isUnlocked = true;
         isUnlocking =false;
+
+        enabled = false;
     }
 }
