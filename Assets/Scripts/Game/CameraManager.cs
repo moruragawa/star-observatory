@@ -11,6 +11,9 @@ public class CameraManager : MonoBehaviour
     [SerializeField] private PlayerController playerController;
     [SerializeField] private Interactor playerInteractor;
 
+    [Header("Telescope")]
+    [SerializeField] private TelescopeInteractable telescopeInteractable;
+
     private InputSystem_Actions inputActions;
 
     private void Awake()
@@ -47,6 +50,8 @@ public class CameraManager : MonoBehaviour
 
         playerController.enabled = true;
         playerInteractor.enabled = true;
+
+        telescopeInteractable.StopViewing();
     }
 
     // 固定視点に切り替える

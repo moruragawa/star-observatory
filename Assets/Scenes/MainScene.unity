@@ -584,6 +584,7 @@ MonoBehaviour:
   telescopeCamera: {fileID: 1310521195}
   playerController: {fileID: 1840315313}
   playerInteractor: {fileID: 330585548}
+  telescopeInteractable: {fileID: 514105561}
 --- !u!1 &293210586
 GameObject:
   m_ObjectHideFlags: 0
@@ -1463,6 +1464,12 @@ MonoBehaviour:
   interactionText: "\u8997\u304F"
   gameManager: {fileID: 1498423382}
   cameraManager: {fileID: 270179712}
+  telescopeCamera: {fileID: 1310521193}
+  lookSensitivity: 0.5
+  minPitch: -30
+  maxPitch: 30
+  minYaw: -90
+  maxYaw: 90
 --- !u!65 &514105562
 BoxCollider:
   m_ObjectHideFlags: 0
