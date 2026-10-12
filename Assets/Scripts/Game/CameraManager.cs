@@ -5,6 +5,7 @@ public class CameraManager : MonoBehaviour
     [Header("Cameras")]
     [SerializeField] private Camera playerCamera;
     [SerializeField] private Camera fixedCamera;
+    [SerializeField] private Camera telescopeCamera;
 
     [Header("Player")]
     [SerializeField] private PlayerController playerController;
@@ -29,8 +30,8 @@ public class CameraManager : MonoBehaviour
 
     private void Update()
     {
-        // 固定視点でEscキーを押した場合、通常視点に戻る
-        if (fixedCamera.enabled &&
+        // 固定視点または望遠鏡視点でEscキーを押した場合、通常視点に戻る
+        if ((fixedCamera.enabled || telescopeCamera.enabled) &&
             inputActions.Player.Cancel.WasPressedThisFrame())
         {
             SwitchToPlayer();
@@ -41,6 +42,7 @@ public class CameraManager : MonoBehaviour
     public void SwitchToPlayer()
     {
         fixedCamera.enabled = false;
+        telescopeCamera.enabled = false;
         playerCamera.enabled = true;
 
         playerController.enabled = true;
@@ -57,6 +59,17 @@ public class CameraManager : MonoBehaviour
             viewPoint.rotation);
 
         fixedCamera.enabled = true;
+
+        playerController.enabled = false;
+        playerInteractor.enabled = false;
+    }
+
+    // 望遠鏡視点に切り替える
+    public void SwitchToTelescope()
+    {
+        playerCamera.enabled = false;
+        fixedCamera.enabled = false;
+        telescopeCamera.enabled = true;
 
         playerController.enabled = false;
         playerInteractor.enabled = false;
