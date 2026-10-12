@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public bool HasStar { get; private set; }
     public bool HasKey { get; private set; }
     public bool HasGear { get; private set; }
+    public bool IsTelescopeUsable { get; private set; }
 
     public void GetStar()
     {
@@ -50,6 +51,12 @@ public class GameManager : MonoBehaviour
     {
         HasGear = false;
         Debug.Log("歯車を使用");
+    }
+
+    public void UnlockTelescope()
+    {
+        IsTelescopeUsable = true;
+        Debug.Log("望遠鏡が使用可能になりました");
     }
 
     // ゲーム状態を更新する

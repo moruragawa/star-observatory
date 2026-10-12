@@ -22,6 +22,7 @@ public class GearSlotInteractable : Interactable
         {
             gameManager.UseGear();
             placedGear.SetActive(true);
+            gameManager.UnlockTelescope();
 
             Debug.Log("歯車を取り付けました");
         }
