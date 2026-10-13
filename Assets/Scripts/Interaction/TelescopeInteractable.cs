@@ -14,6 +14,11 @@ public class TelescopeInteractable : Interactable
     [SerializeField] private float minYaw = -90f;
     [SerializeField] private float maxYaw = 90f;
 
+    [Header("Star Interaction")]
+    [SerializeField] private float starInteractDistance = 100f;
+    [SerializeField] private LayerMask telescopeTargetLayer;
+    [SerializeField] private Interactor playerInteractor;
+
     private InputSystem_Actions inputActions;
     private float cameraPitch;
     private float cameraYaw;
@@ -54,6 +59,14 @@ public class TelescopeInteractable : Interactable
             return;
         }
 
+        UpdateTelescopeView();
+
+        UpdateStarInteraction();
+    }
+
+    // 望遠鏡の視点を操作する
+    private void UpdateTelescopeView()
+    {
         Vector2 lookInput = inputActions.Player.Look.ReadValue<Vector2>();
 
         // 左右の視点操作
@@ -68,6 +81,47 @@ public class TelescopeInteractable : Interactable
 
         telescopeCamera.localRotation =
             Quaternion.Euler(cameraPitch, cameraYaw, 0f);
+    }
+
+    // 星3を検出し取得する
+    private void UpdateStarInteraction()
+    {
+        // 星3の検出
+        StarInteractable star = GetTargetStar();
+
+        bool canGetStar = star != null
+            && star.isActiveAndEnabled
+            && star.CanInteract;
+
+        // プロンプトの表示
+        if (canGetStar)
+        {
+            playerInteractor.ShowPrompt(star.GetInteractionText());
+        }
+        else
+        {
+            playerInteractor.HidePrompt();
+        }
+
+        // Eキーを押した場合、星のインタラクション処理を実行する
+        if (inputActions.Player.Interact.WasPressedThisFrame() && canGetStar)
+        {
+            star.Interact();
+        }
+    }
+
+    // 検出対象の星を取得する
+    private StarInteractable GetTargetStar()
+    {
+        Ray ray = new Ray(telescopeCamera.position, telescopeCamera.forward);
+
+        if (Physics.Raycast(
+            ray, out RaycastHit hit, starInteractDistance, telescopeTargetLayer))
+        {
+            return hit.collider.GetComponent<StarInteractable>();
+        }
+
+        return null;
     }
 
     public override void Interact()
@@ -87,5 +141,6 @@ public class TelescopeInteractable : Interactable
     public void StopViewing()
     {
         isViewing = false;
+        playerInteractor.HidePrompt();
     }
 }

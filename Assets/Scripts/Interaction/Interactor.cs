@@ -34,13 +34,17 @@ public class Interactor : MonoBehaviour
     private void Update()
     {
         Interactable interactable = GetTargetInteractable();
-    
-        UpdateInteractionPrompt(interactable);
 
-        // Eキーを押した場合
-        if (inputActions.Player.Interact.WasPressedThisFrame())
+        bool canInteract = interactable != null
+            && interactable.isActiveAndEnabled
+            && interactable.CanInteract;
+    
+        UpdateInteractionPrompt(interactable, canInteract);
+
+        // Eキーを押した場合、インタラクション処理を実行する
+        if (inputActions.Player.Interact.WasPressedThisFrame() && canInteract)
         {
-            TryInteract(interactable);
+            interactable.Interact();
         }
     }
 
@@ -51,41 +55,35 @@ public class Interactor : MonoBehaviour
 
         if (Physics.Raycast(ray, out RaycastHit hit, interactDistance))
         {
-            Interactable interactable = hit.collider.GetComponent<Interactable>();
-            
-            if (interactable != null && interactable.isActiveAndEnabled)
-            {
-                return interactable;
-            }
+            return hit.collider.GetComponent<Interactable>();
         }
 
         return null;
     }
 
     // 調査対象を見ている場合、プロンプトを表示する
-    private void UpdateInteractionPrompt(Interactable interactable)
+    private void UpdateInteractionPrompt(Interactable interactable, bool canInteract)
     {
-        if (interactable != null
-            && interactable.isActiveAndEnabled
-            && interactable.CanInteract)
+        if (canInteract)
         {
-            interactionPrompt.SetActive(true);
-            actionText.text = interactable.GetInteractionText();
+            ShowPrompt(interactable.GetInteractionText());
         }
         else
         {
-            interactionPrompt.SetActive(false);
+            HidePrompt();
         }
     }
 
-    // 正面の操作対象を検出して処理を実行する
-    private void TryInteract(Interactable interactable)
+    // プロンプトを表示する
+    public void ShowPrompt(string text)
     {
-        if (interactable != null
-            && interactable.isActiveAndEnabled
-            && interactable.CanInteract)
-        {
-            interactable.Interact();
-        }
+        interactionPrompt.SetActive(true);
+        actionText.text = text;
+    }
+
+    // プロンプトを非表示にする
+    public void HidePrompt()
+    {
+        interactionPrompt.SetActive(false);
     }
 }
