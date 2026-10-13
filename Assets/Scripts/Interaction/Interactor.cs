@@ -10,32 +10,41 @@ public class Interactor : MonoBehaviour
     private InputSystem_Actions inputActions;
     private Camera interactionCamera;
 
-    void Awake()
+    private void Awake()
     {
         inputActions = new InputSystem_Actions();
         interactionCamera = GetComponent<Camera>();
     }
 
-    void OnEnable()
+    private void OnEnable()
     {
         inputActions.Enable();
     }
 
-    void OnDisable()
+    private void OnDisable()
     {
         inputActions.Disable();
+
+        if (interactionPrompt != null)
+        {
+            interactionPrompt.SetActive(false);
+        }
     }
 
-    void Update()
+    private void Update()
     {
         Interactable interactable = GetTargetInteractable();
-    
-        UpdateInteractionPrompt(interactable);
 
-        // Eキーを押した場合
-        if (inputActions.Player.Interact.WasPressedThisFrame())
+        bool canInteract = interactable != null
+            && interactable.isActiveAndEnabled
+            && interactable.CanInteract;
+    
+        UpdateInteractionPrompt(interactable, canInteract);
+
+        // Eキーを押した場合、インタラクション処理を実行する
+        if (inputActions.Player.Interact.WasPressedThisFrame() && canInteract)
         {
-            TryInteract(interactable);
+            interactable.Interact();
         }
     }
 
@@ -53,25 +62,28 @@ public class Interactor : MonoBehaviour
     }
 
     // 調査対象を見ている場合、プロンプトを表示する
-    private void UpdateInteractionPrompt(Interactable interactable)
+    private void UpdateInteractionPrompt(Interactable interactable, bool canInteract)
     {
-        if (interactable != null)
+        if (canInteract)
         {
-            interactionPrompt.SetActive(true);
-            actionText.text = interactable.InteractionText;
+            ShowPrompt(interactable.GetInteractionText());
         }
         else
         {
-            interactionPrompt.SetActive(false);
+            HidePrompt();
         }
     }
 
-    // 正面の操作対象を検出して処理を実行する
-    private void TryInteract(Interactable interactable)
+    // プロンプトを表示する
+    public void ShowPrompt(string text)
     {
-        if (interactable != null)
-        {
-            interactable.Interact();
-        }
+        interactionPrompt.SetActive(true);
+        actionText.text = text;
+    }
+
+    // プロンプトを非表示にする
+    public void HidePrompt()
+    {
+        interactionPrompt.SetActive(false);
     }
 }
