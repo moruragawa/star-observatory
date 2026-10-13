@@ -50,8 +50,6 @@ public class StarSlotInteractable : Interactable
             
             case GameManager.GameState.FindStar3:
                 starIndex = 2;
-
-                // TODO: 星3配置後のクリア処理を追加する
                 break;
             
             default:

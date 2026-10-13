@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private PlayerController playerController;
+    [SerializeField] private Interactor playerInteractor;
+    [SerializeField] private GameObject clearPanel;
+
     public enum GameState
     {
         FindStar1,
@@ -82,6 +86,11 @@ public class GameManager : MonoBehaviour
     // ゲームクリア時の処理
     private void OnClear()
     {
+        playerController.enabled = false;
+        playerInteractor.enabled = false;
+
+        clearPanel.SetActive(true);
+
         Debug.Log("ゲームクリア！");
     }
 }
