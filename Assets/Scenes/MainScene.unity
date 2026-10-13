@@ -8035,12 +8035,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 3884337964497998714}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8fde3ae9d5a948b18ed25c94fdb57f8, type: 3}
+  m_Script: {fileID: 11500000, guid: c76d1f15f5bd344ac9f591be98f7a045, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FlowerHintViewInteractable
+  m_EditorClassIdentifier: Assembly-CSharp::HintViewInteractable
   interactionText: "\u898B\u308B"
   cameraManager: {fileID: 270179712}
   viewPoint: {fileID: 863514902}
+  gameManager: {fileID: 1498423382}
+  hintId: 3
 --- !u!4 &8187425363027210449
 Transform:
   m_ObjectHideFlags: 0

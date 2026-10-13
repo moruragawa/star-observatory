@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -14,12 +15,22 @@ public class GameManager : MonoBehaviour
         Clear
     }
 
+    public enum HintId
+    {
+        Memo,
+        Candy,
+        Moon,
+        Flower
+    }
+
     public GameState CurrentState { get; private set; } = GameState.FindStar1;
 
     public bool HasStar { get; private set; }
     public bool HasKey { get; private set; }
     public bool HasGear { get; private set; }
     public bool IsTelescopeUsable { get; private set; }
+
+    private HashSet<HintId> viewedHints = new HashSet<HintId>();
 
     public void GetStar()
     {
@@ -61,6 +72,28 @@ public class GameManager : MonoBehaviour
     {
         IsTelescopeUsable = true;
         Debug.Log("望遠鏡が使用可能になりました");
+    }
+
+    // ヒントを確認済みにする
+    public void MarkHintViewed(HintId hintId)
+    {
+        viewedHints.Add(hintId);
+        Debug.Log("ヒント確認：" + hintId);
+    }
+
+    // 指定したヒントを確認済みか調べる
+    public bool HasViewedHint(HintId hintId)
+    {
+        return viewedHints.Contains(hintId);
+    }
+
+    // すべてのヒントを確認済みか調べる
+    public bool HasViewedAllHints()
+    {
+        return HasViewedHint(HintId.Memo)
+            && HasViewedHint(HintId.Candy)
+            && HasViewedHint(HintId.Moon)
+            && HasViewedHint(HintId.Flower);
     }
 
     // ゲーム状態を更新する
