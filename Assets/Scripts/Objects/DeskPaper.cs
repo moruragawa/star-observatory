@@ -5,6 +5,7 @@ public class DeskPaper : MonoBehaviour
 {
     [SerializeField] private float moveDistance = 0.2f;
     [SerializeField] private float animationDuration = 0.5f;
+    [SerializeField] private Collider memoCollider;
 
     private Vector3 initialPosition;
     private bool hasMoved;
@@ -46,6 +47,10 @@ public class DeskPaper : MonoBehaviour
         }
 
         transform.localPosition = targetPosition;
+
+        // メモのインタラクションを有効化
+        memoCollider.enabled = true;
+
         hasMoved = true;
         isAnimating = false;
     }
