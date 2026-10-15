@@ -18,6 +18,7 @@ public class BoxInput : MonoBehaviour
 
     [Header("Box")]
     [SerializeField] private BoxViewInteractable boxViewInteractable;
+    [SerializeField] private GameManager gameManager;
 
     [Header("UI")]
     [SerializeField] private GameObject dot;
@@ -104,16 +105,21 @@ public class BoxInput : MonoBehaviour
     {
         string inputNumber = string.Join("", digits);
 
-        if (inputNumber == correctAnswer)
+        if (inputNumber != correctAnswer)
         {
-            Debug.Log("正解です");
-            EndInput();
-            boxViewInteractable.OpenBox();
+            Debug.Log("数字が間違っています");
+            return;
         }
-        else
+
+        if (!gameManager.HasViewedAllHints())
         {
-            Debug.Log("不正解です");
+            Debug.Log("まだ見つけていない手がかりがあります");
+            return;
         }
+
+        Debug.Log("正解です");
+        EndInput();
+        boxViewInteractable.OpenBox();
     }
 
     // 選択中の桁の数字を変更する
