@@ -6,6 +6,7 @@ public class TelescopeInteractable : Interactable
     [SerializeField] private GameManager gameManager;
     [SerializeField] private CameraManager cameraManager;
     [SerializeField] private Transform telescopeCamera;
+    [SerializeField] private GameObject telescopeOverlay;
 
     [Header("Telescope Controls")]
     [SerializeField] private float lookSensitivity = 0.5f;
@@ -126,13 +127,8 @@ public class TelescopeInteractable : Interactable
 
     public override void Interact()
     {
-        if (!gameManager.IsTelescopeUsable)
-        {
-            Debug.Log("望遠鏡はまだ使用できません");
-            return;
-        }
-
         isViewing = true;
+        telescopeOverlay.SetActive(true);
 
         // 望遠鏡視点に切り替える
         cameraManager.SwitchToTelescope();
@@ -141,6 +137,7 @@ public class TelescopeInteractable : Interactable
     public void StopViewing()
     {
         isViewing = false;
+        telescopeOverlay.SetActive(false);
         playerInteractor.HidePrompt();
     }
 }
