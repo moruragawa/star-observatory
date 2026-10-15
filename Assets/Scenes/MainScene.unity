@@ -10806,6 +10806,7 @@ MonoBehaviour:
   - {fileID: 188542984}
   - {fileID: 1216178541}
   - {fileID: 1732700221}
+  correctAnswer: 635
   upperMarker: {fileID: 1804931825}
   lowerMarker: {fileID: 1671004594}
   upperPoints:
@@ -10816,6 +10817,7 @@ MonoBehaviour:
   - {fileID: 1646089002}
   - {fileID: 969121869}
   - {fileID: 1499304507}
+  boxViewInteractable: {fileID: 8609864261438447131}
   dot: {fileID: 1217731112}
 --- !u!4 &8652734834602352010
 Transform:

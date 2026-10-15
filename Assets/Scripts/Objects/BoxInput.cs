@@ -13,6 +13,12 @@ public class BoxInput : MonoBehaviour
     [SerializeField] private Transform[] upperPoints;
     [SerializeField] private Transform[] lowerPoints;
 
+    [Header("Answer")]
+    [SerializeField] private string correctAnswer = "635";
+
+    [Header("Box")]
+    [SerializeField] private BoxViewInteractable boxViewInteractable;
+
     [Header("UI")]
     [SerializeField] private GameObject dot;
 
@@ -44,6 +50,17 @@ public class BoxInput : MonoBehaviour
     private void OnDestroy()
     {
         inputActions.Dispose();
+    }
+
+    private void Update()
+    {
+        if (!IsInputActive) return;
+
+        // Eキーで正誤判定をする
+        if (inputActions.Player.Interact.WasPressedThisFrame())
+        {
+            ConfirmInput();
+        }
     }
 
     // 数字入力を開始する
@@ -80,6 +97,23 @@ public class BoxInput : MonoBehaviour
         else if (moveInput.y < -0.5f) ChangeDigit(-1);
         else if (moveInput.x > 0.5f) MoveSelection(1);
         else if (moveInput.x < -0.5f) MoveSelection(-1);
+    }
+
+    // 入力された数字の正誤判定をする
+    private void ConfirmInput()
+    {
+        string inputNumber = string.Join("", digits);
+
+        if (inputNumber == correctAnswer)
+        {
+            Debug.Log("正解です");
+            EndInput();
+            boxViewInteractable.OpenBox();
+        }
+        else
+        {
+            Debug.Log("不正解です");
+        }
     }
 
     // 選択中の桁の数字を変更する
