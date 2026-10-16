@@ -1,11 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private PlayerController playerController;
     [SerializeField] private Interactor playerInteractor;
     [SerializeField] private GameObject clearPanel;
+    [SerializeField] private Volume telescopeVolume;
 
     public enum GameState
     {
@@ -71,6 +73,12 @@ public class GameManager : MonoBehaviour
     public void UnlockTelescope()
     {
         IsTelescopeUsable = true;
+
+        if (telescopeVolume != null)
+        {
+            telescopeVolume.enabled = false;
+        }
+
         Debug.Log("望遠鏡が使用可能になりました");
     }
 

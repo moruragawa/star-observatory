@@ -10,10 +10,10 @@ public class TelescopeInteractable : Interactable
 
     [Header("Telescope Controls")]
     [SerializeField] private float lookSensitivity = 0.5f;
-    [SerializeField] private float minPitch = -30f;
-    [SerializeField] private float maxPitch = 30f;
-    [SerializeField] private float minYaw = -90f;
-    [SerializeField] private float maxYaw = 90f;
+    [SerializeField] private float minPitch = -40f;
+    [SerializeField] private float maxPitch = -10f;
+    [SerializeField] private float minYaw = -70f;
+    [SerializeField] private float maxYaw = 70f;
 
     [Header("Star Interaction")]
     [SerializeField] private float starInteractDistance = 100f;
@@ -68,6 +68,8 @@ public class TelescopeInteractable : Interactable
     // 望遠鏡の視点を操作する
     private void UpdateTelescopeView()
     {
+        if (!gameManager.IsTelescopeUsable) return;
+
         Vector2 lookInput = inputActions.Player.Look.ReadValue<Vector2>();
 
         // 左右の視点操作
@@ -127,6 +129,11 @@ public class TelescopeInteractable : Interactable
 
     public override void Interact()
     {
+        if (!gameManager.IsTelescopeUsable)
+        {
+            Debug.Log("望遠鏡はまだ使えません");
+        }
+
         isViewing = true;
         telescopeOverlay.SetActive(true);
 

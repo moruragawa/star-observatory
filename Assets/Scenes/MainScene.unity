@@ -141,15 +141,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5021398248244863238, guid: 7a1aa5156a56f4fbaa15ce0d8252e74c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.84
+      value: -11.31
       objectReference: {fileID: 0}
     - target: {fileID: 5021398248244863238, guid: 7a1aa5156a56f4fbaa15ce0d8252e74c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.84
+      value: 5.62
       objectReference: {fileID: 0}
     - target: {fileID: 5021398248244863238, guid: 7a1aa5156a56f4fbaa15ce0d8252e74c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.99
+      value: 0.53
       objectReference: {fileID: 0}
     - target: {fileID: 5021398248244863238, guid: 7a1aa5156a56f4fbaa15ce0d8252e74c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2061,10 +2061,10 @@ MonoBehaviour:
   telescopeCamera: {fileID: 1310521193}
   telescopeOverlay: {fileID: 1169384689}
   lookSensitivity: 0.5
-  minPitch: -30
-  maxPitch: 30
-  minYaw: -90
-  maxYaw: 90
+  minPitch: -40
+  maxPitch: -10
+  minYaw: -70
+  maxYaw: 70
   starInteractDistance: 100
   telescopeTargetLayer:
     serializedVersion: 2
@@ -5214,7 +5214,7 @@ Transform:
   m_GameObject: {fileID: 1310521192}
   serializedVersion: 2
   m_LocalRotation: {x: -0.15304585, y: -0.6903456, z: -0.15304585, w: 0.6903456}
-  m_LocalPosition: {x: 1.3, y: 2.5, z: -0}
+  m_LocalPosition: {x: -1.324, y: 2.719, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5240,10 +5240,10 @@ MonoBehaviour:
   m_RendererIndex: -1
   m_VolumeLayerMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 128
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -5297,7 +5297,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 30
+  field of view: 10
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -5680,6 +5680,7 @@ MonoBehaviour:
   playerController: {fileID: 1840315313}
   playerInteractor: {fileID: 330585548}
   clearPanel: {fileID: 329150060}
+  telescopeVolume: {fileID: 2113197840}
 --- !u!4 &1498423383
 Transform:
   m_ObjectHideFlags: 0
@@ -8418,6 +8419,55 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1979873336}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2113197839
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2113197841}
+  - component: {fileID: 2113197840}
+  m_Layer: 7
+  m_Name: TelescopeVolume
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2113197840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2113197839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Core.Runtime::UnityEngine.Rendering.Volume
+  m_IsGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 11400000, guid: 080aec61f269340638c606454144815e, type: 2}
+--- !u!4 &2113197841
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2113197839}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.75749874, y: 1.809905, z: -1.4312363}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2118235339
 GameObject:
@@ -11212,3 +11262,4 @@ SceneRoots:
   - {fileID: 1684611658}
   - {fileID: 293210587}
   - {fileID: 865348820}
+  - {fileID: 2113197841}
