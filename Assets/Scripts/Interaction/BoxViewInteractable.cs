@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class BoxViewInteractable : FixedViewInteractable
 {
+    [SerializeField] private BoxInput boxInput;
     [SerializeField] private BoxLid boxLid;
     [SerializeField] private Collider interactionCollider;
     [SerializeField] private StarInteractable starInteractable;
@@ -12,10 +13,15 @@ public class BoxViewInteractable : FixedViewInteractable
         base.Interact();
         Debug.Log("箱を見ました");
 
-        StartCoroutine(OpenBox());
+        boxInput.BeginInput();
     }
 
-    private IEnumerator OpenBox()
+    public void OpenBox()
+    {
+        StartCoroutine(OpenBoxRoutine());
+    }
+
+    private IEnumerator OpenBoxRoutine()
     {
         boxLid.Open();
 
