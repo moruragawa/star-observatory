@@ -4,12 +4,13 @@ public class StarInteractable : Interactable
 {
     [SerializeField] private GameManager gameManager;
     [SerializeField] private DeskPaper deskPaper;
+    [SerializeField, Range(0, 2)] private int starIndex;
 
     public override void Interact()
     {
-        gameManager.GetStar();
+        gameManager.GetStar(starIndex);
 
-        if (gameManager.CurrentState == GameManager.GameState.FindStar1)
+        if (starIndex == 0)
         {
             deskPaper.Move();
         }

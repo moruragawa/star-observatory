@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Interactor playerInteractor;
     [SerializeField] private GameObject clearPanel;
     [SerializeField] private Volume telescopeVolume;
+    [SerializeField] private UIManager uiManager;
 
     public enum GameState
     {
@@ -34,9 +35,10 @@ public class GameManager : MonoBehaviour
 
     private HashSet<HintId> viewedHints = new HashSet<HintId>();
 
-    public void GetStar()
+    public void GetStar(int starIndex)
     {
         HasStar = true;
+        uiManager.UpdateStarCollected(starIndex);
         Debug.Log("星を入手");
     }
 
@@ -49,24 +51,28 @@ public class GameManager : MonoBehaviour
     public void GetKey()
     {
         HasKey = true;
+        uiManager.ShowKeyIcon(true);
         Debug.Log("鍵を入手");
     }
 
     public void UseKey()
     {
         HasKey = false;
+        uiManager.ShowKeyIcon(false);
         Debug.Log("鍵を使用");
     }
 
     public void GetGear()
     {
         HasGear = true;
+        uiManager.ShowGearIcon(true);
         Debug.Log("歯車を入手");
     }
 
     public void UseGear()
     {
         HasGear = false;
+        uiManager.ShowGearIcon(false);
         Debug.Log("歯車を使用");
     }
 
