@@ -17,6 +17,15 @@ public class CameraManager : MonoBehaviour
     [Header("Box")]
     [SerializeField] private BoxInput boxInput;
 
+    [Header("Controls Help")]
+    [SerializeField] private GameObject normalHelp;
+    [SerializeField] private GameObject fixedViewHelp;
+    [SerializeField] private GameObject telescopeHelp;
+    [SerializeField] private GameObject boxInputHelp;
+
+    [Header("Game")]
+    [SerializeField] private GameManager gameManager;
+
     private InputSystem_Actions inputActions;
 
     private void Awake()
@@ -42,6 +51,8 @@ public class CameraManager : MonoBehaviour
         {
             SwitchToPlayer();
         }
+
+        UpdateControlsHelp();
     }
 
     // 通常視点に切り替える
@@ -57,6 +68,8 @@ public class CameraManager : MonoBehaviour
         telescopeInteractable.StopViewing();
 
         if (boxInput.IsInputActive) boxInput.EndInput();
+
+        UpdateControlsHelp();
     }
 
     // 固定視点に切り替える
@@ -72,6 +85,8 @@ public class CameraManager : MonoBehaviour
 
         playerController.enabled = false;
         playerInteractor.enabled = false;
+
+        UpdateControlsHelp();
     }
 
     // 望遠鏡視点に切り替える
@@ -83,5 +98,26 @@ public class CameraManager : MonoBehaviour
 
         playerController.enabled = false;
         playerInteractor.enabled = false;
+
+        UpdateControlsHelp();
+    }
+
+    // 操作説明表示を切り替える
+    private void UpdateControlsHelp()
+    {
+        bool isBoxInput = fixedCamera.enabled && boxInput.IsInputActive;
+
+        bool isFixedView = fixedCamera.enabled && !isBoxInput
+            || (telescopeCamera.enabled && !gameManager.IsTelescopeUsable);
+
+        bool isTelescopeView = telescopeCamera.enabled
+            && gameManager.IsTelescopeUsable;
+
+        bool isPlayerView = playerCamera.enabled;
+
+        normalHelp.SetActive(isPlayerView);
+        fixedViewHelp.SetActive(isFixedView);
+        telescopeHelp.SetActive(isTelescopeView);
+        boxInputHelp.SetActive(isBoxInput);
     }
 }
