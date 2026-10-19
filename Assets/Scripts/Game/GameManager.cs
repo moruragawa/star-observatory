@@ -4,11 +4,9 @@ using UnityEngine.Rendering;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private PlayerController playerController;
-    [SerializeField] private Interactor playerInteractor;
-    [SerializeField] private GameObject clearPanel;
     [SerializeField] private Volume telescopeVolume;
     [SerializeField] private UIManager uiManager;
+    [SerializeField] private ScreenController screenController;
 
     public enum GameState
     {
@@ -39,41 +37,35 @@ public class GameManager : MonoBehaviour
     {
         HasStar = true;
         uiManager.UpdateStarCollected(starIndex);
-        Debug.Log("星を入手");
     }
 
     public void UseStar()
     {
         HasStar = false;
-        Debug.Log("星を使用");
     }
 
     public void GetKey()
     {
         HasKey = true;
         uiManager.ShowKeyIcon(true);
-        Debug.Log("鍵を入手");
     }
 
     public void UseKey()
     {
         HasKey = false;
         uiManager.ShowKeyIcon(false);
-        Debug.Log("鍵を使用");
     }
 
     public void GetGear()
     {
         HasGear = true;
         uiManager.ShowGearIcon(true);
-        Debug.Log("歯車を入手");
     }
 
     public void UseGear()
     {
         HasGear = false;
         uiManager.ShowGearIcon(false);
-        Debug.Log("歯車を使用");
     }
 
     public void UnlockTelescope()
@@ -84,15 +76,12 @@ public class GameManager : MonoBehaviour
         {
             telescopeVolume.enabled = false;
         }
-
-        Debug.Log("望遠鏡が使用可能になりました");
     }
 
     // ヒントを確認済みにする
     public void MarkHintViewed(HintId hintId)
     {
         viewedHints.Add(hintId);
-        Debug.Log("ヒント確認：" + hintId);
     }
 
     // 指定したヒントを確認済みか調べる
@@ -126,18 +115,11 @@ public class GameManager : MonoBehaviour
                 OnClear();
                 break;
         }
-
-        Debug.Log("現在のGameState：" + CurrentState);
     }
 
     // ゲームクリア時の処理
     private void OnClear()
     {
-        playerController.enabled = false;
-        playerInteractor.enabled = false;
-
-        clearPanel.SetActive(true);
-
-        Debug.Log("ゲームクリア！");
+        screenController.ShowClearScreen();
     }
 }

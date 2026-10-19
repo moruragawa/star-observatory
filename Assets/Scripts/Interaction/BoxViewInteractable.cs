@@ -11,8 +11,6 @@ public class BoxViewInteractable : FixedViewInteractable
     public override void Interact()
     {
         base.Interact();
-        Debug.Log("箱を見ました");
-
         boxInput.BeginInput();
     }
 

@@ -80,7 +80,5 @@ public class StarSlotInteractable : Interactable
 
         Sprite icon = starIndex < starIcons.Length ? starIcons[starIndex] : null;
         uiManager.ShowMessage(placedStarMessage, icon);
-
-        Debug.Log("星を置きました");
     }
 }

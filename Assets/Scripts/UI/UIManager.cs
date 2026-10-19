@@ -28,6 +28,8 @@ public class UIManager : MonoBehaviour
 
     private Coroutine messageCoroutine;
 
+    public bool IsMessagePlaying => messageCoroutine != null;
+
     // 星を取得したとき、アイコンをカラー画像に切り替える
     public void UpdateStarCollected(int index)
     {
