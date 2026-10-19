@@ -2,12 +2,24 @@ using UnityEngine;
 
 public class StarSlotInteractable : Interactable
 {
+    [Header("Game")]
     [SerializeField] private GameManager gameManager;
+
+    [Header("Star Slots")]
     [SerializeField] private GameObject[] placedStars;
     [SerializeField] private StarSlotDrawer starSlotDrawer;
+
+    [Header("Items")]
     [SerializeField] private GameObject key;
     [SerializeField] private GameObject gear;
+
+    [Header("UI")]
     [SerializeField] private UIManager uiManager;
+
+    [Header("Message")]
+    [SerializeField] private string placedStarMessage = "星を置いた！";
+    [SerializeField] private string noStarMessage = "星を置く場所のようだ";
+    [SerializeField] private Sprite[] starIcons;
 
     // 星の所持状態によってプロンプト表示を切り替える
     public override string GetInteractionText()
@@ -24,7 +36,7 @@ public class StarSlotInteractable : Interactable
     {
         if (!gameManager.HasStar)
         {
-            Debug.Log("星を持っていません");
+            uiManager.ShowMessage(noStarMessage);
             return;
         }
 
@@ -65,6 +77,9 @@ public class StarSlotInteractable : Interactable
 
         // ゲーム状態を更新する
         gameManager.AdvanceState();
+
+        Sprite icon = starIndex < starIcons.Length ? starIcons[starIndex] : null;
+        uiManager.ShowMessage(placedStarMessage, icon);
 
         Debug.Log("星を置きました");
     }

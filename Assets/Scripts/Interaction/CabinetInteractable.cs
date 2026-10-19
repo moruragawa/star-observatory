@@ -11,6 +11,11 @@ public class CabinetInteractable : Interactable
     [SerializeField] private Collider interactionCollider;
     [SerializeField] private Collider flowerHintCollider;
 
+    [Header("Message")]
+    [SerializeField] private UIManager uiManager;
+    [SerializeField] private string lockedMessage = "鍵がかかっている";
+    [SerializeField] private string unlockedMessage = "キャビネットが開いた！";
+
     private bool isUnlocked;
     private bool isUnlocking;
 
@@ -34,7 +39,7 @@ public class CabinetInteractable : Interactable
 
         if (!gameManager.HasKey)
         {
-            Debug.Log("鍵が必要です");
+            uiManager.ShowMessage(lockedMessage);
             return;
         }
 
@@ -70,5 +75,7 @@ public class CabinetInteractable : Interactable
         isUnlocking =false;
 
         enabled = false;
+
+        uiManager.ShowMessage(unlockedMessage);
     }
 }

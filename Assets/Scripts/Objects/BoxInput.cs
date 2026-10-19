@@ -23,6 +23,12 @@ public class BoxInput : MonoBehaviour
     [Header("UI")]
     [SerializeField] private GameObject dot;
 
+    [Header("Message")]
+    [SerializeField] private UIManager uiManager;
+    [SerializeField] private string correctCodeMessage = "箱が開いた！";
+    [SerializeField] private string incorrectCodeMessage = "間違えちゃった";
+    [SerializeField] private string hintNotFoundMessage = "まだ見つけていない手がかりがあるみたい";
+
     public bool IsInputActive { get; private set; }
 
     private InputSystem_Actions inputActions;
@@ -107,17 +113,17 @@ public class BoxInput : MonoBehaviour
 
         if (inputNumber != correctAnswer)
         {
-            Debug.Log("数字が間違っています");
+            uiManager.ShowMessage(incorrectCodeMessage);
             return;
         }
 
         if (!gameManager.HasViewedAllHints())
         {
-            Debug.Log("まだ見つけていない手がかりがあります");
+            uiManager.ShowMessage(hintNotFoundMessage);
             return;
         }
 
-        Debug.Log("正解です");
+        uiManager.ShowMessage(correctCodeMessage);
         EndInput();
         boxViewInteractable.OpenBox();
     }

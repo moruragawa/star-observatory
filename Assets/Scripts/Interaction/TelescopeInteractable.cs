@@ -20,6 +20,10 @@ public class TelescopeInteractable : Interactable
     [SerializeField] private LayerMask telescopeTargetLayer;
     [SerializeField] private Interactor playerInteractor;
 
+    [Header("Message")]
+    [SerializeField] private UIManager uiManager;
+    [SerializeField] private string message = "まだ望遠鏡は使えないみたい";
+
     private InputSystem_Actions inputActions;
     private float cameraPitch;
     private float cameraYaw;
@@ -131,7 +135,7 @@ public class TelescopeInteractable : Interactable
     {
         if (!gameManager.IsTelescopeUsable)
         {
-            Debug.Log("望遠鏡はまだ使えません");
+            uiManager.ShowMessage(message);
         }
 
         isViewing = true;
