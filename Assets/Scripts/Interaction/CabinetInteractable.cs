@@ -16,6 +16,9 @@ public class CabinetInteractable : Interactable
     [SerializeField] private string lockedMessage = "鍵がかかっている";
     [SerializeField] private string unlockedMessage = "キャビネットが開いた！";
 
+    [Header("Audio")]
+    [SerializeField] private AudioManager audioManager;
+
     private bool isUnlocked;
     private bool isUnlocking;
 
@@ -44,6 +47,7 @@ public class CabinetInteractable : Interactable
         }
 
         gameManager.UseKey();
+        audioManager.PlaySound(AudioManager.SoundType.UseKey);
 
         // 解錠演出を開始
         StartCoroutine(UnlockCabinet());

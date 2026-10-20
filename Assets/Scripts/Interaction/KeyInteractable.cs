@@ -10,9 +10,13 @@ public class KeyInteractable : Interactable
     [SerializeField] private string message = "鍵を手に入れた！";
     [SerializeField] private Sprite keyIcon;
 
+    [Header("Audio")]
+    [SerializeField] private AudioManager audioManager;
+
     public override void Interact()
     {
         gameManager.GetKey();
+        audioManager.PlaySound(AudioManager.SoundType.Pickup);
 
         gameObject.SetActive(false);
 

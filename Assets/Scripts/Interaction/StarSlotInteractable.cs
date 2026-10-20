@@ -21,6 +21,9 @@ public class StarSlotInteractable : Interactable
     [SerializeField] private string noStarMessage = "星を置く場所のようだ";
     [SerializeField] private Sprite[] starIcons;
 
+    [Header("Audio")]
+    [SerializeField] private AudioManager audioManager;
+
     // 星の所持状態によってプロンプト表示を切り替える
     public override string GetInteractionText()
     {
@@ -74,6 +77,7 @@ public class StarSlotInteractable : Interactable
         placedStars[starIndex].SetActive(true);
         uiManager.UpdateStarPlaced(starIndex);
         gameManager.UseStar();
+        audioManager.PlaySound(AudioManager.SoundType.PlaceStar);
 
         // ゲーム状態を更新する
         gameManager.AdvanceState();

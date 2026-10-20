@@ -10,9 +10,13 @@ public class GearInteractable : Interactable
     [SerializeField] private string message = "歯車を手に入れた！";
     [SerializeField] private Sprite gearIcon;
 
+    [Header("Audio")]
+    [SerializeField] private AudioManager audioManager;
+
     public override void Interact()
     {
         gameManager.GetGear();
+        audioManager.PlaySound(AudioManager.SoundType.Pickup);
 
         gameObject.SetActive(false);
 

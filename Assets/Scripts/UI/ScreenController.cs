@@ -20,6 +20,9 @@ public class ScreenController : MonoBehaviour
     [SerializeField] private float fadeOutDuration = 2.5f;
     [SerializeField] private float fadeInDuration = 1f;
 
+    [Header("Audio")]
+    [SerializeField] private AudioManager audioManager;
+
     private bool isShowingClear;
 
     private void Awake()
@@ -42,6 +45,8 @@ public class ScreenController : MonoBehaviour
     // タイトル画面を非表示にし、説明画面を表示する
     public void ShowIntro()
     {
+        audioManager.PlaySound(AudioManager.SoundType.Button);
+
         titlePanel.SetActive(false);
         introPanel.SetActive(true);
     }
@@ -49,6 +54,8 @@ public class ScreenController : MonoBehaviour
     // 説明画面を非表示にし、本編を開始する
     public void StartGame()
     {
+        audioManager.PlaySound(AudioManager.SoundType.Button);
+
         introPanel.SetActive(false);
         hud.SetActive(true);
 
@@ -93,6 +100,8 @@ public class ScreenController : MonoBehaviour
         yield return Fade(1f, 0f, fadeInDuration);
 
         fadeOverlay.blocksRaycasts = false;
+
+        audioManager.PlaySound(AudioManager.SoundType.Clear);
     }
 
     // 画面のフェードイン・フェードアウト
@@ -125,6 +134,8 @@ public class ScreenController : MonoBehaviour
     // タイトル画面に戻る
     public void ReturnToTitle()
     {
+        audioManager.PlaySound(AudioManager.SoundType.Button);
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

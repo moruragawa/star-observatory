@@ -11,9 +11,13 @@ public class StarInteractable : Interactable
     [SerializeField] private string message = "星を手に入れた！";
     [SerializeField] private Sprite[] starIcons = new Sprite[3];
 
+    [Header("Audio")]
+    [SerializeField] private AudioManager audioManager;
+
     public override void Interact()
     {
         gameManager.GetStar(starIndex);
+        audioManager.PlaySound(AudioManager.SoundType.Pickup);
 
         if (starIndex == 0)
         {

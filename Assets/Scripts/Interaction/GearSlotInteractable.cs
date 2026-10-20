@@ -12,6 +12,9 @@ public class GearSlotInteractable : Interactable
     [SerializeField] private string gearPlacedMessage = "歯車を取り付けた！望遠鏡が使えるかも";
     [SerializeField] private string gearAlreadyPlacedMessage = "歯車はしっかりはまっている";
 
+    [Header("Audio")]
+    [SerializeField] private AudioManager audioManager;
+
     // 歯車の所持状態によってプロンプト表示を切り替える
     public override string GetInteractionText()
     {
@@ -40,6 +43,7 @@ public class GearSlotInteractable : Interactable
         }
 
         gameManager.UseGear();
+        audioManager.PlaySound(AudioManager.SoundType.PlaceGear);
         placedGear.SetActive(true);
         gameManager.UnlockTelescope();
 

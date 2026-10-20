@@ -29,6 +29,9 @@ public class BoxInput : MonoBehaviour
     [SerializeField] private string incorrectCodeMessage = "間違えちゃった";
     [SerializeField] private string hintNotFoundMessage = "まだ見つけていない手がかりがあるみたい";
 
+    [Header("Audio")]
+    [SerializeField] private AudioManager audioManager;
+
     public bool IsInputActive { get; private set; }
 
     private InputSystem_Actions inputActions;
@@ -114,16 +117,19 @@ public class BoxInput : MonoBehaviour
         if (inputNumber != correctAnswer)
         {
             uiManager.ShowMessage(incorrectCodeMessage);
+            audioManager.PlaySound(AudioManager.SoundType.IncorrectCode);
             return;
         }
 
         if (!gameManager.HasViewedAllHints())
         {
             uiManager.ShowMessage(hintNotFoundMessage);
+            audioManager.PlaySound(AudioManager.SoundType.IncorrectCode);
             return;
         }
 
         uiManager.ShowMessage(correctCodeMessage);
+        audioManager.PlaySound(AudioManager.SoundType.CorrectCode);
         EndInput();
         boxViewInteractable.OpenBox();
     }
@@ -137,6 +143,8 @@ public class BoxInput : MonoBehaviour
         else if (digits[selectedDigit] < 0) digits[selectedDigit] = 9;
 
         UpdateNumberDisplay();
+
+        audioManager.PlaySound(AudioManager.SoundType.NumberSelect);
     }
 
     // 選択する桁を変更する
@@ -148,6 +156,8 @@ public class BoxInput : MonoBehaviour
         else if (selectedDigit < 0) selectedDigit = 2;
 
         UpdateMarkerPositions();
+
+        audioManager.PlaySound(AudioManager.SoundType.NumberSelect);
     }
 
     // 数字の表示を更新する
