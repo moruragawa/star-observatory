@@ -11418,6 +11418,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1040590337}
   m_CullTransparentMesh: 1
+--- !u!1 &1048575402
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1048575403}
+  m_Layer: 0
+  m_Name: ClearViewPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1048575403
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1048575402}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.03171066, y: 0.092323765, z: 0.0029417097, w: 0.99521965}
+  m_LocalPosition: {x: -1.26, y: 1.22, z: -5.03}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1311034081}
+  m_LocalEulerAnglesHint: {x: -3.65, y: 10.6, z: 0}
 --- !u!4 &1061583222 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 920708a8fa7774706a3920629339b940, type: 3}
@@ -13808,6 +13839,7 @@ Transform:
   - {fileID: 312868774}
   - {fileID: 801774716}
   - {fileID: 1061583222}
+  - {fileID: 1048575403}
   m_Father: {fileID: 1979873336}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1335073342
@@ -18035,11 +18067,11 @@ RectTransform:
   - {fileID: 1217731113}
   - {fileID: 1461465437}
   - {fileID: 1169384690}
+  - {fileID: 1798935980}
   - {fileID: 560837720}
   - {fileID: 513163072}
   - {fileID: 374861784}
   - {fileID: 669737623}
-  - {fileID: 1798935980}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -18067,9 +18099,12 @@ MonoBehaviour:
   playerInteractor: {fileID: 330585548}
   uiManager: {fileID: 1132863155}
   fadeOverlay: {fileID: 1798935981}
-  fadeOutDuration: 0.3
-  fadeInDuration: 0.4
+  fadeOutDuration: 2.5
+  fadeInDuration: 1
   audioManager: {fileID: 855074612}
+  cameraManager: {fileID: 270179712}
+  clearViewPoint: {fileID: 1048575403}
+  clearViewDuration: 3
 --- !u!1001 &1882204283
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19500,7 +19535,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0

@@ -23,6 +23,11 @@ public class ScreenController : MonoBehaviour
     [Header("Audio")]
     [SerializeField] private AudioManager audioManager;
 
+    [Header("Clear View")]
+    [SerializeField] private CameraManager cameraManager;
+    [SerializeField] private Transform clearViewPoint;
+    [SerializeField] private float clearViewDuration = 3f;
+
     private bool isShowingClear;
 
     private void Awake()
@@ -85,14 +90,20 @@ public class ScreenController : MonoBehaviour
         // メッセージの表示を待つ
         yield return null;
 
+        fadeOverlay.blocksRaycasts = true;
+
+        // メッセージ表示中にフェードアウトを開始
+        StartCoroutine(Fade(0f, 1f, fadeOutDuration));
+
         // メッセージが消えるまで待つ
         while (uiManager.IsMessagePlaying) yield return null;
 
-        fadeOverlay.blocksRaycasts = true;
-        yield return Fade(0f, 1f, fadeOutDuration);
+        // 画面が完全に暗くなるまで待つ
+        while (fadeOverlay.alpha < 1f) yield return null;
+
+        cameraManager.SwitchToFixed(clearViewPoint);
 
         hud.SetActive(false);
-        clearPanel.SetActive(true);
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -100,6 +111,11 @@ public class ScreenController : MonoBehaviour
         yield return Fade(1f, 0f, fadeInDuration);
 
         fadeOverlay.blocksRaycasts = false;
+
+        // 固定視点の表示
+        yield return new WaitForSecondsRealtime(clearViewDuration);
+
+        clearPanel.SetActive(true);
 
         audioManager.PlaySound(AudioManager.SoundType.Clear);
     }
