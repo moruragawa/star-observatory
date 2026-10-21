@@ -47,7 +47,6 @@ public class CabinetInteractable : Interactable
         }
 
         gameManager.UseKey();
-        audioManager.PlaySound(AudioManager.SoundType.UseKey);
 
         // 解錠演出を開始
         StartCoroutine(UnlockCabinet());
@@ -59,14 +58,13 @@ public class CabinetInteractable : Interactable
 
         insertedKey.SetActive(true);
 
-        // TODO: 解錠音を再生する
-
         yield return new WaitForSeconds(unlockDelay);
 
         insertedKey.SetActive(false);
         cabinetLock.SetActive(false);
 
         cabinetDoor.Open();
+        audioManager.PlaySound(AudioManager.SoundType.UseKey);
 
         // 扉が開き終わるまで待つ
         yield return new WaitUntil(() => cabinetDoor.IsOpen);
