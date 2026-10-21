@@ -5258,7 +5258,7 @@ MonoBehaviour:
   cameraManager: {fileID: 270179712}
   telescopeCamera: {fileID: 1310521193}
   telescopeOverlay: {fileID: 1169384689}
-  lookSensitivity: 0.5
+  lookSensitivity: 0.1
   minPitch: -40
   maxPitch: -10
   minYaw: -70
@@ -18429,7 +18429,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   moveSpeed: 5
-  lookSensitivity: 0.5
+  lookSensitivity: 0.1
   mainCamera: {fileID: 330585546}
 --- !u!1 &1863543390
 GameObject:
