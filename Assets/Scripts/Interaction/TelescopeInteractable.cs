@@ -27,6 +27,7 @@ public class TelescopeInteractable : Interactable
     private InputSystem_Actions inputActions;
     private float cameraPitch;
     private float cameraYaw;
+    private float initialPitch;
     private float initialYaw;
     private bool isViewing;
 
@@ -44,6 +45,7 @@ public class TelescopeInteractable : Interactable
             ? angles.y - 360f
             : angles.y;
 
+        initialPitch = cameraPitch;
         initialYaw = cameraYaw;
     }
 
@@ -137,6 +139,13 @@ public class TelescopeInteractable : Interactable
         {
             uiManager.ShowMessage(message);
         }
+
+        // 初期状態の視点に戻す
+        cameraPitch = initialPitch;
+        cameraYaw = initialYaw;
+
+        telescopeCamera.localRotation =
+            Quaternion.Euler(cameraPitch, cameraYaw, 0f);
 
         isViewing = true;
         telescopeOverlay.SetActive(true);
