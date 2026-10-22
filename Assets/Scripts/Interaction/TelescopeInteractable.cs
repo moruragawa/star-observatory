@@ -9,7 +9,7 @@ public class TelescopeInteractable : Interactable
     [SerializeField] private GameObject telescopeOverlay;
 
     [Header("Telescope Controls")]
-    [SerializeField] private float lookSensitivity = 0.1f;
+    [SerializeField] private float lookSensitivity = 0.07f;
     [SerializeField] private float minPitch = -40f;
     [SerializeField] private float maxPitch = -10f;
     [SerializeField] private float minYaw = -70f;

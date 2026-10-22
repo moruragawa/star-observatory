@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 5f;
-    [SerializeField] private float lookSensitivity = 0.1f;
+    [SerializeField] private float lookSensitivity = 0.07f;
     [SerializeField] private Transform mainCamera;
 
     private InputSystem_Actions inputActions;
