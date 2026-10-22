@@ -45,7 +45,7 @@ public class CameraManager : MonoBehaviour
 
     private void Update()
     {
-        // 固定視点または望遠鏡視点でEscキーを押した場合、通常視点に戻る
+        // 固定視点または望遠鏡視点でQキーを押した場合、通常視点に戻る
         if ((fixedCamera.enabled || telescopeCamera.enabled) &&
             inputActions.Player.Cancel.WasPressedThisFrame())
         {

@@ -582,7 +582,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""88df6d3c-4470-44bd-8600-19534cca6164"",
-                    ""path"": ""<Keyboard>/escape"",
+                    ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
