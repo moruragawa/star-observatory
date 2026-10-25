@@ -24,11 +24,11 @@ Blenderで制作した3DモデルをUnityに取り込み、ゲーム環境の構
 
 ## スクリーンショット
 
-![通常視点](Screenshots/Main.png)
+![通常視点](ScreenShots/Main.png)
 
-![謎解き視点](Screenshots/Puzzle.png)
+![謎解き視点](ScreenShots/Puzzle.png)
 
-![望遠鏡視点](Screenshots/Telescope.png)
+![望遠鏡視点](ScreenShots/Telescope.png)
 
 ## 使用技術・開発環境
 
